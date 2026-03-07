@@ -1,0 +1,9 @@
+*.exe
+*.bak
+*.obj
+*.o
+*.dll
+*.a
+bass.h
+album95.ini
+/cache
