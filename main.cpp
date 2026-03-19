@@ -2002,12 +2002,12 @@ static LRESULT CALLBACK WndProc(HWND h, UINT m, WPARAM w, LPARAM l) {
 
         g_ui_font = CreateFontA(
             -12, 0, 0, 0, FW_NORMAL, 0, 0, 0,
-            SHIFTJIS_CHARSET,
+            DEFAULT_CHARSET,
             OUT_DEFAULT_PRECIS,
             CLIP_DEFAULT_PRECIS,
             DEFAULT_QUALITY,
             DEFAULT_PITCH | FF_DONTCARE,
-            "MS UI Gothic"
+            "MS Sans Serif"
         );
         if (g_ui_font) {
             SendMessageA(g_list,   WM_SETFONT, (WPARAM)g_ui_font, TRUE);
@@ -2023,29 +2023,34 @@ static LRESULT CALLBACK WndProc(HWND h, UINT m, WPARAM w, LPARAM l) {
 
         LVCOLUMNA col;
         ZeroMemory(&col, sizeof(col));
-        col.mask = LVCF_TEXT | LVCF_WIDTH | LVCF_SUBITEM;
+        col.mask = LVCF_TEXT | LVCF_WIDTH | LVCF_SUBITEM | LVCF_FMT;
 
         col.pszText = (LPSTR)"";
+        col.fmt = LVCFMT_LEFT;
         col.cx = 15;
         col.iSubItem = 0;
         ListView_InsertColumn(g_tracks, 0, &col);
 
         col.pszText = (LPSTR)"#";
+        col.fmt = LVCFMT_RIGHT;
         col.cx = 25;
         col.iSubItem = 1;
         ListView_InsertColumn(g_tracks, 1, &col);
 
         col.pszText = (LPSTR)"Title";
+        col.fmt = LVCFMT_LEFT;
         col.cx = 170;
         col.iSubItem = 2;
         ListView_InsertColumn(g_tracks, 2, &col);
 
         col.pszText = (LPSTR)"Artist";
+        col.fmt = LVCFMT_LEFT;
         col.cx = 115;
         col.iSubItem = 3;
         ListView_InsertColumn(g_tracks, 3, &col);
 
         col.pszText = (LPSTR)"Time";
+        col.fmt = LVCFMT_RIGHT;
         col.cx = 40;
         col.iSubItem = 4;
         ListView_InsertColumn(g_tracks, 4, &col);
